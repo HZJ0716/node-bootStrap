@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1" />
+<title>BS测试</title>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="./js/jquery-3.4.0.js"></script>
+  <script src="./js/page.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <script src="./js/jq-paginator.min.js"></script>
+  <link href="./css/base.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!--导航-->
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+   <div class="container-fluid">
+   	<div class="navbar-header">
+      <a class="navbar navbar-brand" href="" style="color: #fff">node后台操作测试</a>
+    </div>
+       <ul class="nav navbar-nav">
+           <li class="active nav-item"><a href="" class="nav-link">欢迎你</a></li>
+           <li class=""><button type="button" class="btn btn-primary">退出</button></li>
+       </ul>
+   </div>
+</nav>
+<!--菜单栏-->
+<div class="main">
+	<div class="row">
+		<!--菜单-->
+		<div class="col-md-2">
+			<ul class="nav nav-tabs flex-column" style="color: blue">
+				<li><a href="#" class="nav-link" onclick="Change('china')">国创番剧</a></li>
+				<li><a href="#" class="nav-link" onclick="Change('fanju')">日漫番剧</a></li>
+				<li><a href="#" class="nav-link" onclick="Change('shop')">商城产品</a></li>
+			</ul>
+		</div>
+		<!--管理页-->
+		<div class="col-md-10">
+			<!--管理页-->
+			<form class="search input-group">
+				<input id="sea" type="text" placeholder="请输入查询名称" class="form-control seaInfo" value=""/>
+				<button onclick="Search()" class="input-group-addon">搜索</button>
+				<button style="margin-left: 40px;" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加数据</button>
+			</form>
+			<table class="table">
+				<thead class="tb">
+			  </thead>
+			  <tbody class="tbody">				
+			  </tbody>
+			 </table>
+			 
+			  <!-- 数据分页 -->
+			  <div class="page">
+				  <div>
+					  <button type="button" class="prev fl" onclick="Prev()">上一页</button>
+					  <ul class="pageBody">
+					  </ul>
+					  <button type="button" class="next fl" onclick="Next()">下一页</button>
+					  <span class="nowNum fl">当前第x页</span>
+					  <span class="pageTotal fl">总共xx页</span>
+				  </div>
+			  </div>
+
+			 <!-- 模态框（Add） -->
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- 模态框头部 -->
+						<div class="modal-header">
+							<h4 class="modal-title">
+								信息添加
+							</h4>
+							<button type="button" class="close" data-dismiss="modal">
+								&times;
+							</button>
+						</div>
+						<!-- 模态框主体 -->
+						<div class="modal-body info">
+							<form>
+								<div class="form-group">
+								  <label for="badge">用户权限:</label>
+								  <input class="form-control" id="badge" placeholder="请输入用户权限">
+								</div>
+								<div class="form-group">
+								  <label for="imgCover">图片地址:</label>
+								  <input class="form-control" id="imgCover" placeholder="输入图片地址">
+								</div>
+								<div class="form-group">
+								  <label for="follow">追番人数:</label>
+								  <input class="form-control" id="follow" placeholder="输入追番人数">
+								</div>
+								<div class="form-group">
+								  <label for="title">番剧名称:</label>
+								  <input class="form-control" id="title" placeholder="输入番剧名称">
+								</div>
+								<div class="form-group">
+								  <label for="play">播放次数:</label>
+								  <input class="form-control" id="play" placeholder="输入播放次数">
+								</div>
+								<div class="form-group">
+								  <label for="score">番剧评分:</label>
+								  <input class="form-control" id="score" placeholder="输入番剧评分">
+								</div>
+								<div class="form-group">
+								  <label for="link">b站内部链接:</label>
+								  <input class="form-control" id="link" placeholder="输入内部链接">
+								</div>
+							</form>
+						</div>
+						<!-- 模态框底部 -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+							</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" onclick='Add()'>
+								添加
+							</button>
+						</div>
+					</div>
+				</div>
+		</div>
+			 <!-- 模态框（Update） -->
+			<div class="modal fade" id="Update">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- 模态框头部 -->
+						<div class="modal-header">
+							<h4 class="modal-title">
+								信息修改
+							</h4>
+							<button type="button" class="close" data-dismiss="modal">
+								&times;
+							</button>
+						</div>
+						<!-- 模态框主体 -->
+						<div class="modal-body info">
+							<form>
+								<div class="form-group">
+								  <input id="ids" type="hidden">
+								  <label for="badges">用户权限:</label>
+								  <input class="form-control" id="badges" placeholder="请输入用户权限">
+								</div>
+								<div class="form-group">
+								  <label for="imgCovers">图片地址:</label>
+								  <input class="form-control" id="imgCovers" placeholder="输入图片地址">
+								</div>
+								<div class="form-group">
+								  <label for="follows">追番人数:</label>
+								  <input class="form-control" id="follows" placeholder="输入追番人数">
+								</div>
+								<div class="form-group">
+								  <label for="titles">番剧名称:</label>
+								  <input class="form-control" id="titles" placeholder="输入番剧名称">
+								</div>
+								<div class="form-group">
+								  <label for="plays">播放次数:</label>
+								  <input class="form-control" id="plays" placeholder="输入播放次数">
+								</div>
+								<div class="form-group">
+								  <label for="scores">番剧评分:</label>
+								  <input class="form-control" id="scores" placeholder="输入番剧评分">
+								</div>
+								<div class="form-group">
+								  <label for="links">b站内部链接:</label>
+								  <input class="form-control" id="links" placeholder="输入内部链接">
+								</div>
+							</form>
+						</div>
+						<!-- 模态框底部 -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+							</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" onclick='Updates()'>
+								修改
+							</button>
+						</div>
+					</div>
+				</div>
+	</div>
+</div>
+	<script>
+		
+		var listName = 'china'; // 数据表名字
+		var pageNum = 10; // 每页查询数据
+		var nowNum = 1; // 当前页面号数
+		var totalNum = 1; // 数据总页数
+		var str = '';
+		
+		window.onload = function(){
+			initPage();
+		}
+		function Change(index){
+			str = '';
+			listName = index;
+			initPage();
+		}
+		function Search(){
+			str = '';
+			let sea = document.getElementById("sea").value;
+			$.ajax({
+				'url': 'http://127.0.0.1:8080/search',
+				'method': 'POST',
+				'dataType': 'json',
+				'data': {'data':sea,'listName':listName},
+				'success': function(data){
+					if(data.length != 0){
+						var str = '';
+						for(let i =0;i<data.length;i++){
+							str +='<tr><td class="t">' +data[i]['title'];
+							str +='</td><td><img src="' +data[i]['imgCover']+'">';
+							str +='</td><td>' +data[i]['follow'];
+							str +='</td><td>' +data[i]['play'];
+							str +='</td><td>' +data[i]['score'];
+							str +='</td><td>' +data[i]['badge'];
+							str +='</td><td style="display:none">' +data[i]['id'];
+							str +='</td><td><button class="btn btn-primary lh" data-toggle="modal"';
+							str +='data-target="#Update" onclick="Update(this)">修改</button>';
+							str +='<button class="btn btn-danger lh"';
+							str +='onclick="Delete('+data[i]['id']+')">删除</button>';
+							str +='</td></tr>';
+							$('.tbody').html(str);
+						}
+					}else{
+						str += '<tr><td>未找到匹配数据</td></tr>';
+						$('.tbody').html(str);
+					}
+				}
+			});
+		}
+		function Add(){
+			let badge = $('#badge').val();
+			let imgCover = $('#imgCover').val();
+			let follow = $('#follow').val();
+			let title = $('#title').val();
+			let play = $('#play').val();
+			let score = $('#score').val();
+			let link = $('#link').val();
+			$.ajax({
+				'url': 'http://127.0.0.1:8080/add',
+				'method': 'POST',
+				'data': {'badge':badge,'imgCover':imgCover,'follow':follow,
+				'title':title,'play':play,'score':score,'link':link,'listName':listName},
+				'success': function(data){
+					if(data.length != 0){
+						alert('添加成功');
+						window.location.reload();
+					}
+					else
+						alert('添加失败');
+				}
+			});
+		}
+		function Delete(index){
+			$.ajax({
+				'url': 'http://127.0.0.1:8080/del',
+				'method': 'POST',
+				'data': {'index':index,'listName':listName},
+				'success': function(data){
+					if(data.length != 0){
+						alert('删除成功');
+						window.location.reload();
+					}
+					else
+						alert('删除失败');
+				}
+			});
+		}
+		function Update(obj){
+			// 对模态框数据进行填补,只能填补前端显示出来的数据
+			var tds= $(obj).parent().parent().find('td');
+			$("#titles").val(tds.eq(0).text());
+			$("#badges").val(tds.eq(5).text());
+			$("#follows").val(tds.eq(2).text());
+			$("#plays").val(tds.eq(3).text());
+			$("#scores").val(tds.eq(4).text());
+			$("#ids").val(tds.eq(6).text());
+		}
+		function Updates(){
+			let badge = $('#badges').val();
+			let imgCover = $('#imgCovers').val();
+			let follow = $('#follows').val();
+			let title = $('#titles').val();
+			let play = $('#plays').val();
+			let score = $('#scores').val();
+			let link = $('#links').val();
+			let id = $('#ids').val();
+			console.log(id);
+			$.ajax({
+				'url': 'http://127.0.0.1:8080/upd',
+				'method': 'POST',
+				'data': {'badge':badge,'imgCover':imgCover,'follow':follow,
+				'title':title,'play':play,'score':score,'link':link,'id':id,'listName':listName},
+				'success': function(data){
+					if(data.length != 0){
+						alert('修改成功');
+						window.location.reload();
+					}
+					else
+						alert('修改失败');
+				}
+			});
+		}
+	
+
+	</script>
+</body>
+</html>

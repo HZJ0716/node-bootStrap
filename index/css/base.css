@@ -1,0 +1,55 @@
+
+td{
+		padding: 0;
+		margin: 0;
+	}
+	th{
+		text-align: center;
+	}
+	ul li{
+		list-style: none;
+	}
+	.search{
+		width: 50%;
+		margin: 0 auto;
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	.lh{
+		margin-top: 18px;
+		margin-right: 5px;
+	}
+	.t{
+		display: inline-block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		text-align: center;
+		
+	}
+	.tbody tr td{
+		line-height: 76px;
+		width: 270px;
+		text-align: center;
+	}
+	.tbody img{
+		width: 60px;
+		height: 80px;
+	}
+	.text{
+		list-style: none;
+	}
+	.page{
+		padding: 20px 0;
+		margin-left: 320px;
+	}
+	.fl{
+		float: left;
+		margin: 10px 10px;
+	}
+	.next,.prev{
+		margin-top: 14px;
+	}
+	.nowNum,.pageTotal{
+		margin-top: 16px;
+	}
